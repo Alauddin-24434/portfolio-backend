@@ -1,0 +1,19 @@
+import mongoose from "mongoose";
+import { logger } from "./app/utils/Logger/indes";
+import app from "./app";
+import { envVariable } from "./app/config";
+
+async function starServer() {
+  try {
+    await mongoose.connect(envVariable.DB_URL as string);
+    logger.info("Mongodb Connected successfully!");
+    app.listen(envVariable.PORT, () => {
+      logger.info(`🚀 Server is running on port ${envVariable.PORT}`);
+    });
+  } catch (error) {
+    logger.error("❌ Failed to connect to MongoDB", error);
+    process.exit(1);
+  }
+}
+
+starServer();
