@@ -3,7 +3,7 @@ import { ProjectModel } from "./project.model";
 
 export const createProject = async (projectInput: PortfolioProject) => {
 
-  const existing = await ProjectModel.findOne({ id: projectInput._id });
+  const existing = await ProjectModel.findOne({ _id: projectInput._id });
   if (existing) {
     throw new Error("Project with this ID already exists");
   }

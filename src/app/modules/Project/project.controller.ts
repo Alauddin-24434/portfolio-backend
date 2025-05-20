@@ -13,7 +13,7 @@ export const createProjectController = catchAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const imageUrl = req.file?.path;
 
-    const projectData = {
+ const projectData = {
       ...req.body,
       imageUrl,
     };

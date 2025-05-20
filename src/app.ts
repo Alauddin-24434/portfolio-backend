@@ -1,6 +1,8 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { logger } from "./app/utils/Logger";
+import { projectRoute } from "./app/modules/Project/project.route";
+import { globalError } from "./app/middleware/globalErrorHandeller";
 
 const app: Application = express();
 
@@ -18,10 +20,14 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+app.use(projectRoute)
+
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({
     success: false,
     message: "Sorry, can't find that!",
   });
 });
+
+app.use(globalError)
 export default app;

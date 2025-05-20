@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 // Create project (with image upload)
-router.post("/create", upload.single("image"), createProjectController);
+router.post("/create-project", upload.single("image"), createProjectController);
 
 // Get all projects
 router.get("/", getAllProjectsController);
@@ -25,4 +25,4 @@ router.put("/:id", upload.single("image"), updateProjectController);
 // Delete project by ID
 router.delete("/:id", deleteProjectController);
 
-export default router;
+export const projectRoute= router;
