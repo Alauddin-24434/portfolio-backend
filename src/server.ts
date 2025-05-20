@@ -3,6 +3,7 @@ import { logger } from "./app/utils/Logger/indes";
 import app from "./app";
 import { envVariable } from "./app/config";
 
+// server connect 
 async function starServer() {
   try {
     await mongoose.connect(envVariable.DB_URL as string);
@@ -16,4 +17,5 @@ async function starServer() {
   }
 }
 
+// start server call
 starServer();
