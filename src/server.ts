@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { logger } from "./app/utils/Logger/indes";
+import { logger } from "./app/utils/Logger";
 import app from "./app";
 import { envVariable } from "./app/config";
 

@@ -1,22 +1,26 @@
 import { model, Schema, Document } from "mongoose";
 import bcrypt from "bcryptjs";
+import { IUser } from "./auth.inteface";
 
-interface IUser extends Document {
-  email: string;
-  password: string;
-  role: 'admin';
-  comparePassword(candidatePassword: string): Promise<boolean>;
-}
 
-const userSchema = new Schema<IUser>({
-  email: { type: String, required: [true, "Email is required!"], unique: true },
-  password: { type: String, required: [true, "Password is required!"] },
-  role: {
-    type: String,
-    enum: ["admin"],
-    required: [true, "Role is required!"],
+const userSchema = new Schema<IUser>(
+  {
+    email: {
+      type: String,
+      required: [true, "Email is required!"],
+      unique: true,
+    },
+    password: { type: String, required: [true, "Password is required!"] },
+    role: {
+      type: String,
+      enum: ["admin"],
+      required: [true, "Role is required!"],
+    },
   },
-});
+  {
+    timestamps: true, 
+  }
+);
 
 // password hash pre-save middleware
 userSchema.pre("save", async function (next) {

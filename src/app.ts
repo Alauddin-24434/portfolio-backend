@@ -1,6 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
-import { logger } from "./app/utils/Logger/indes";
+import { logger } from "./app/utils/Logger";
 
 const app: Application = express();
 
